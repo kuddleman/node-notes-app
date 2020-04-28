@@ -1,4 +1,5 @@
 const fs = require('fs')
+const chalk = require( 'chalk' )
 
 const getNotes = () => {
   return "here are my gorgeous notes!"
@@ -18,6 +19,7 @@ const addNote = function( title, body ) {
       body: body
     })
     saveNotes( notes )
+    
     console.log('New note added')
   } else {
     console.log('Note title taken!')
@@ -55,6 +57,15 @@ const removeNote = function( title ) {
    })
    //save notes array to json file
    saveNotes( notesToKeep )
+
+   //add colorful background to console.log 
+   if( notesToKeep.length < notes.length ) {
+      const gnBkg = chalk.green.inverse
+      console.log(gnBkg("Note Removed"))
+   }else {
+      const rdBkg = chalk.red.inverse
+      console.log(rdBkg("No note found!"))
+   }
    
  
 
